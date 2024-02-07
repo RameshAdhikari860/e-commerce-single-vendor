@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     },
     userPassword:{
         type: String,
-        required:[true,"userPassword"]
+        required:[true,"userPassword"],
+        select : false
     },
     userName :{
         type : String,
@@ -21,14 +22,17 @@ const userSchema = new mongoose.Schema({
     role:{
         type : String,
         enum : ["customer","admin"],
-        default : "customer"
+        default : "customer",
+        
     },
     otp :{
-        type :String
+        type :String,
+        select : false
     },
     isOtpVerified : {
         type :Boolean,
-        default : false
+        default : false,
+        select : false
     }
 })
 

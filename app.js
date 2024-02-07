@@ -8,6 +8,7 @@ const { registerUser, loginUser } = require("./controller/authController/authCon
 //Routes Here
 const authRoute = require("./routes/authRoute")
 const productRoute = require("./routes/productRoute")
+const adminUsersRoute = require("./routes/adminUsersRoute")
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -21,6 +22,7 @@ app.get("/", async (req, res) => {
 
 app.use("/api", authRoute)
 app.use("/api", productRoute)
+app.use("/api",adminUsersRoute)
 // register new user
 // app.post("/register",registerUser)
 
