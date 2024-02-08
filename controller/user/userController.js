@@ -43,7 +43,7 @@ exports.getProductReview = async(req,res)=>{
             message : "Product with that id doesn't exists"
         })
     }
-    const reviews = await Review.findById(productId)
+    const reviews = await Review.find({productId }).populate("userId")
     res.status(200).json({
         message : "Review fetched successfully",
         data : reviews
@@ -60,5 +60,22 @@ exports.deleteReview = async(req,res)=>{
     await Review.findByIdAndDelete(reviewId)
     res.status(200).json({
         message : "review deleted"
+    })
+}
+
+exports.addProductReview = async(req,res)=>{
+    const productId = req.params.id
+    const userId = req.user[0]._id
+    const{rating,message} = req.body
+    const review = {
+        userId,
+        rating,
+        message
+    }
+    const product = await Product.findById(productId).populate("user")
+    product.reviews.push(review)
+    await product.save()
+    res.json({
+        message : "Review done"
     })
 }
