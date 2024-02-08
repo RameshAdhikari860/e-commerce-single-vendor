@@ -6,10 +6,10 @@ databaseConnection()
 const { registerUser, loginUser } = require("./controller/authController/authController")
 
 //Routes Here
-const authRoute = require("./routes/authRoute")
-const productRoute = require("./routes/productRoute")
-const adminUsersRoute = require("./routes/adminUsersRoute")
-const userReviewRoute = require("./routes/userReviewRoute")
+const authRoute = require("./routes/auth/authRoute")
+const productRoute = require("./routes/admin/productRoute")
+const adminUsersRoute = require("./routes/admin/adminUsersRoute")
+const userReviewRoute = require("./routes/user/userReviewRoute")
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
